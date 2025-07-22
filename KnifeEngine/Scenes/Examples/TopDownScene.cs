@@ -45,13 +45,16 @@ namespace KnifeEngine.Scenes.Examples
         /// <param name="WIDTH"></param>
         /// <param name="HEIGHT"></param>
         /// <param name="TITLE"></param>
-        public static void Load(uint WIDTH = 800, uint HEIGHT = 600, string TITLE = "KnifeEngine | Examples/PlatformerGameScene.cs")
+        public static void Load(uint WIDTH = 800, uint HEIGHT = 600, string TITLE = "KnifeEngine | Examples/TopDownScene.cs")
         {
             // Setting endcoding for terminal to UTF-8
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             // Creating window variable
             RenderWindow window = Core.CreateWindow(WIDTH, HEIGHT, TITLE);
+
+            // Hide window
+            MainMenuScene.showWindow = false;
 
             // Registering Handlers (for window)
 
@@ -63,12 +66,12 @@ namespace KnifeEngine.Scenes.Examples
             window.KeyReleased += (s, e) => pressedKeys.Remove(e.Code);
 
             // Setting icon
-            Core.SetWindowIcon(window, "assets/player_right.png");
+            Core.SetWindowIcon(window, "Resources/Images/player_right.png");
 
             // Registering Textures (Use special order = ids like: 0, 1, 2)
-            textures_paths.Add("assets/player_right.png"); // 0
-            textures_paths.Add("assets/player_left.png");  // 1
-            textures_paths.Add("assets/grass.png");        // 2
+            textures_paths.Add("Resources/Images/player_right.png"); // 0
+            textures_paths.Add("Resources/Images/player_left.png");  // 1
+            textures_paths.Add("Resources/Images/grass.png");        // 2
 
             TextureManager.RegisterTextures(textures_paths);
 
@@ -94,7 +97,7 @@ namespace KnifeEngine.Scenes.Examples
                 float deltaTime = Timedelta.Time(clock);
 
                 // Update with deltaTime
-                Update(deltaTime);
+                Update(deltaTime, window);
 
                 // Rendering window
                 Render(window);
@@ -121,18 +124,18 @@ namespace KnifeEngine.Scenes.Examples
         private static void InitSprites()
         {
             // Player
-            playerSprite = new SpriteObject("assets/player_right.png", new Vector2f(100, 150), new Vector2f(100, 100), 1, true);
+            playerSprite = new SpriteObject("Resources/Images/player_right.png", new Vector2f(100, 150), new Vector2f(100, 100), 1, true);
 
             // Grass
-            grassSprite = new SpriteObject("assets/grass.png", new Vector2f(100, 300), new Vector2f(50, 50), 2, true);
+            grassSprite = new SpriteObject("Resources/Images/grass.png", new Vector2f(100, 300), new Vector2f(50, 50), 2, true);
 
             // Bugged
             //grassSprite.SetRotateAroundCenter(true);
             //grassSprite.SetRotation(180.0f);
 
 
-            grassSprite2 = new SpriteObject("assets/grass.png", new Vector2f(200, 300), new Vector2f(50, 50), 3, true);
-            grassSprite3 = new SpriteObject("assets/grass.png", new Vector2f(300, 270), new Vector2f(50, 50), 4, true);
+            grassSprite2 = new SpriteObject("Resources/Images/grass.png", new Vector2f(200, 300), new Vector2f(50, 50), 3, true);
+            grassSprite3 = new SpriteObject("Resources/Images/grass.png", new Vector2f(300, 270), new Vector2f(50, 50), 4, true);
         }
 
         /// <summary>
@@ -153,7 +156,7 @@ namespace KnifeEngine.Scenes.Examples
         private static void Window_KeyPressed(object sender, KeyEventArgs e) { }
 
         // Update (smooth, thx Timedelta.cs)
-        private static void Update(float deltaTime)
+        private static void Update(float deltaTime, RenderWindow window)
         {
             Vector2f currentPos = playerSprite.GetPosition();
 
@@ -194,8 +197,12 @@ namespace KnifeEngine.Scenes.Examples
             }
             if (pressedKeys.Contains(Keyboard.Key.Escape))
             {
-                Console.WriteLine("[LOGGER] | ENGINE CLOSED!");
-                Environment.Exit(0);
+                Console.WriteLine("[LOGGER] | WINDOW CLOSED!");
+
+                // Show menu
+                MainMenuScene.showWindow = true;
+
+                window.Close();
             }
 
             // Normalize velocity vector to keep consistent speed diagonally

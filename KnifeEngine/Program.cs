@@ -1,16 +1,15 @@
 ﻿// SYSTEM
-using System;
-using System.Collections.Generic;
-
+using KnifeEngine.Engine;
+// NAMESPACES
+using KnifeEngine.Objects;
+using KnifeEngine.Scenes;
+using KnifeEngine.Scenes.Examples;
 // SFML
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-
-// NAMESPACES
-using KnifeEngine.Objects;
-using KnifeEngine.Scenes.Examples;
-using KnifeEngine.Engine;
+using System;
+using System.Collections.Generic;
 
 namespace KnifeEngine
 {
@@ -18,7 +17,7 @@ namespace KnifeEngine
     {
         const uint WIDTH = 800;
         const uint HEIGHT = 600;
-        const string TITLE = "KnifeEngine | Examples/PlatformerGameScene.cs";
+        const string TITLE = "KnifeEngine";
 
         static void Main(string[] args)
         {
@@ -27,7 +26,8 @@ namespace KnifeEngine
 
             Console.WriteLine(@"Select Scene:
 1. Platformer
-2. TopDown");
+2. TopDown
+3. MainMenu");
 
             Console.Write("> ");
             ConsoleKeyInfo answer = Console.ReadKey();
@@ -36,10 +36,13 @@ namespace KnifeEngine
             switch (answer.KeyChar)
             {
                 case '1':
-                    PlatformerGameScene.Load(WIDTH, HEIGHT, TITLE);
+                    PlatformerGameScene.Load(WIDTH, HEIGHT);
                     break;
                 case '2':
-                    TopDownScene.Load(WIDTH, HEIGHT, TITLE);
+                    TopDownScene.Load(WIDTH, HEIGHT);
+                    break;
+                case '3':
+                    MainMenuScene.Load(WIDTH, HEIGHT);
                     break;
 
                 default:

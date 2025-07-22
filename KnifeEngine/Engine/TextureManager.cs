@@ -35,5 +35,13 @@ namespace KnifeEngine.Engine
 
             return texture;
         }
+
+        public static void Clear()
+        {
+            foreach (var tex in textures)
+                tex.Dispose();  // важно освободить ресурсы
+
+            textures.Clear();
+        }
     }
 }

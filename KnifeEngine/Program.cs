@@ -24,6 +24,14 @@ namespace KnifeEngine
             // Setting Encoding
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            // Регистрируем сцены
+            SceneManager.RegisterScene("TopDown", () => TopDownScene.Load());
+            SceneManager.RegisterScene("Platformer", () => PlatformerGameScene.Load());
+            SceneManager.RegisterScene("MainMenu", () => MainMenuScene.Load());
+
+            // Запускаем нужную сцену
+            //SceneManager.LoadScene("MainMenu");
+
             Console.WriteLine(@"Select Scene:
 1. Platformer
 2. TopDown
@@ -36,13 +44,13 @@ namespace KnifeEngine
             switch (answer.KeyChar)
             {
                 case '1':
-                    PlatformerGameScene.Load(WIDTH, HEIGHT);
+                    SceneManager.LoadScene("TopDown");
                     break;
                 case '2':
-                    TopDownScene.Load(WIDTH, HEIGHT);
+                    SceneManager.LoadScene("TopDown");
                     break;
                 case '3':
-                    MainMenuScene.Load(WIDTH, HEIGHT);
+                    SceneManager.LoadScene("MainMenu");
                     break;
 
                 default:

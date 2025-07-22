@@ -47,6 +47,17 @@ namespace KnifeEngine.Scenes.Examples
         /// <param name="TITLE"></param>
         public static void Load(uint WIDTH = 800, uint HEIGHT = 600, string TITLE = "KnifeEngine | Examples/TopDownScene.cs")
         {
+            // Clear Scene assets
+            TextureManager.Clear();
+            textures_paths.Clear();
+            pressedKeys.Clear();
+            sprites.Clear();
+
+            playerSprite = null;
+            grassSprite = null;
+            grassSprite2 = null;
+            grassSprite3 = null;
+
             // Setting endcoding for terminal to UTF-8
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -201,8 +212,8 @@ namespace KnifeEngine.Scenes.Examples
 
                 // Show menu
                 MainMenuScene.showWindow = true;
-
                 window.Close();
+                SceneManager.LoadScene("MainMenu");
             }
 
             // Normalize velocity vector to keep consistent speed diagonally

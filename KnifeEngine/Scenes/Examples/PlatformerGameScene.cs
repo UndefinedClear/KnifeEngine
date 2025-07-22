@@ -51,6 +51,17 @@ namespace KnifeEngine.Scenes.Examples
             // Setting endcoding for terminal to UTF-8
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            // Clear Scene assets
+            TextureManager.Clear();
+            textures_paths.Clear();
+            pressedKeys.Clear();
+            sprites.Clear();
+
+            playerSprite = null;
+            grassSprite = null;
+            grassSprite2 = null;
+            grassSprite3 = null;
+
             // Hide menu
             MainMenuScene.showWindow = false;
 
@@ -198,8 +209,8 @@ namespace KnifeEngine.Scenes.Examples
 
                 // Show menu
                 MainMenuScene.showWindow = true;
-
                 window.Close();
+                SceneManager.LoadScene("MainMenu");
             }
 
             // Updating position by X

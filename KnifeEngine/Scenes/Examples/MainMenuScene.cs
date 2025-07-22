@@ -1,7 +1,8 @@
-﻿using SFML.Graphics;
+﻿using KnifeEngine.Engine;
+using KnifeEngine.Engine.UI;
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using KnifeEngine.Engine.UI;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -71,7 +72,8 @@ namespace KnifeEngine.Scenes
                     () =>
                     {
                         Console.WriteLine("Starting Platformer...");
-                        Examples.PlatformerGameScene.Load();
+                        window.Close();
+                        SceneManager.LoadScene("Platformer");
                     },
                     backColor,
                     hoverColor
@@ -86,7 +88,8 @@ namespace KnifeEngine.Scenes
                     () =>
                     {
                         Console.WriteLine("Starting TopDown...");
-                        Examples.TopDownScene.Load();
+                        window.Close();
+                        SceneManager.LoadScene("TopDown");
                     },
                     backColor,
                     hoverColor
@@ -103,6 +106,7 @@ namespace KnifeEngine.Scenes
                         Console.WriteLine("Exiting...");
                         isRunning = false;
                         window.Close();
+                        Environment.Exit(0);
                     },
                     backColor,
                     hoverColor

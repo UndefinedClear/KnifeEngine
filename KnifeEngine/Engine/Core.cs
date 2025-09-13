@@ -20,7 +20,7 @@ namespace KnifeEngine.Engine
         }
 
         /// <summary>
-        /// Changes the icon of the engine window
+        /// Changes the icon of the engine window (only .png)
         /// </summary>
         /// <param name="window"></param>
         /// <param name="path_to_icon"></param>
@@ -37,7 +37,6 @@ namespace KnifeEngine.Engine
         /// Changes the title of the engine window
         /// </summary>
         /// <param name="window"></param>
-        /// <param name="path_to_icon"></param>
         public static void SetWindowTitle(RenderWindow window, string title)
         {
             window.SetTitle(title);

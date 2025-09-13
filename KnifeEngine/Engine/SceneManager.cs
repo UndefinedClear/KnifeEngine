@@ -25,12 +25,12 @@ namespace KnifeEngine.Engine
             if (scenes.ContainsKey(name))
             {
                 currentSceneName = name;
-                Console.WriteLine($"[SceneManager] | Loading scene: {name}");
+                Console.WriteLine($"\n[SceneManager] | Loading scene: {name}");
                 scenes[name].Invoke();
             }
             else
             {
-                Console.WriteLine($"[SceneManager] | Scene '{name}' not found.");
+                Console.WriteLine($"\n[SceneManager] | Scene '{name}' not found.");
             }
         }
 

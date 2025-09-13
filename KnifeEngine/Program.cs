@@ -1,9 +1,11 @@
 ﻿// SYSTEM
 using KnifeEngine.Engine;
+
 // NAMESPACES
 using KnifeEngine.Objects;
 using KnifeEngine.Scenes;
 using KnifeEngine.Scenes.Examples;
+
 // SFML
 using SFML.Graphics;
 using SFML.System;

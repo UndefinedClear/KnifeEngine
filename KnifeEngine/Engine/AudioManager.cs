@@ -1,5 +1,4 @@
 ﻿using SFML.Audio;
-using SFML.Graphics;
 
 namespace KnifeEngine.Engine
 {
@@ -32,7 +31,7 @@ namespace KnifeEngine.Engine
             }
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"[AudioManager] Sound with key \"{key}\" doesn't regstered!");
+            Console.WriteLine($"\n[AudioManager] Sound with key \"{key}\" doesn't regstered!");
             Console.ResetColor();
             return null;
         }

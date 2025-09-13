@@ -33,7 +33,7 @@ public class ButtonObject
         backgroundColor_ = backgroundColor;
         hoverColor_ = hoveredColor;
     }
-
+    
     public void Update(Vector2i mousePos)
     {
         FloatRect bounds = shape.GetGlobalBounds();

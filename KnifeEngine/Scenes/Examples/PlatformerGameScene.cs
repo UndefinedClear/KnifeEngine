@@ -20,6 +20,8 @@ namespace KnifeEngine.Scenes.Examples
         private static SpriteObject grassSprite;   // Grass 1
         private static SpriteObject grassSprite2;  // Grass 2
         private static SpriteObject grassSprite3;  // Grass 3
+        private static SpriteObject grassSprite4;  // Grass 4
+        private static SpriteObject grassSprite5;  // Grass 5
 
         // Gravity and Moving vars
         private static float verticalSpeed = 1.0f;
@@ -61,6 +63,8 @@ namespace KnifeEngine.Scenes.Examples
             grassSprite = null;
             grassSprite2 = null;
             grassSprite3 = null;
+            grassSprite4 = null;
+            grassSprite5 = null;
 
             // Hide menu
             MainMenuScene.showWindow = false;
@@ -121,10 +125,15 @@ namespace KnifeEngine.Scenes.Examples
         /// </summary>
         private static void InitHitboxes()
         {
+            Vector2f grassHitboxSize = new Vector2f(45, 45);
+            Vector2f grassHitboxOffset = new Vector2f(4, 4);
+
             // Grass Hitboxes
-            grassSprite.SetHitbox(new Vector2f(45, 45), new Vector2f(4, 4));
-            grassSprite2.SetHitbox(new Vector2f(45, 45), new Vector2f(4, 4));
-            grassSprite3.SetHitbox(new Vector2f(45, 45), new Vector2f(4, 4));
+            grassSprite.SetHitbox(grassHitboxSize, grassHitboxOffset);
+            grassSprite2.SetHitbox(grassHitboxSize, grassHitboxOffset);
+            grassSprite3.SetHitbox(grassHitboxSize, grassHitboxOffset);
+            grassSprite4.SetHitbox(grassHitboxSize, grassHitboxOffset);
+            grassSprite5.SetHitbox(grassHitboxSize, grassHitboxOffset);
 
             // Player Hitboxes
             playerSprite.SetHitbox(new Vector2f(40, 80), new Vector2f(29, 10));
@@ -142,6 +151,8 @@ namespace KnifeEngine.Scenes.Examples
             grassSprite = new SpriteObject("Resources/Images/grass.png", new Vector2f(100, 300), new Vector2f(50, 50), 2, true);
             grassSprite2 = new SpriteObject("Resources/Images/grass.png", new Vector2f(200, 300), new Vector2f(50, 50), 3, true);
             grassSprite3 = new SpriteObject("Resources/Images/grass.png", new Vector2f(300, 270), new Vector2f(50, 50), 4, true);
+            grassSprite4 = new SpriteObject("Resources/Images/grass.png", new Vector2f(400, 270), new Vector2f(50, 50), 5, true);
+            grassSprite5 = new SpriteObject("Resources/Images/grass.png", new Vector2f(500, 300), new Vector2f(50, 50), 6, true);
         }
 
         /// <summary>
@@ -156,6 +167,8 @@ namespace KnifeEngine.Scenes.Examples
             sprites.Add(grassSprite);
             sprites.Add(grassSprite2);
             sprites.Add(grassSprite3);
+            sprites.Add(grassSprite4);
+            sprites.Add(grassSprite5);
         }
 
         // Pressed keys (not smooth)

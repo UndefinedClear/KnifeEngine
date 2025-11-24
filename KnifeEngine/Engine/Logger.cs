@@ -43,6 +43,11 @@ namespace KnifeEngine.Engine
             LogWrite(from, message, "INFO");
         }
 
+        public void Fine(string from, string message)
+        {
+            Log_non_write(from, message, "FINE");
+        }
+
         public void Error(string from, string message)
         {
             LogWrite(from, message, "ERROR");
@@ -64,6 +69,14 @@ namespace KnifeEngine.Engine
             string time_segment_current_log = @$"{_now.Hour.ToString()}:{_now.Minute.ToString()}:{_now.Second.ToString()}";
 
             File.AppendAllText(log_path, $@"FROM: [${root}] | [{level}] : ${message}" + "\n");
+            Console.WriteLine($@"FROM: [${root}] | [{level}] : ${message}");
+        }
+
+        private void Log_non_write(string root, string message, string level)
+        {
+            DateTime _now = DateTime.Now;
+            string time_segment_current_log = @$"{_now.Hour.ToString()}:{_now.Minute.ToString()}:{_now.Second.ToString()}";
+
             Console.WriteLine($@"FROM: [${root}] | [{level}] : ${message}");
         }
     }

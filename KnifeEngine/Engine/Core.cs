@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System;
 
@@ -17,6 +18,49 @@ namespace KnifeEngine.Engine
         {
             RenderWindow window = new RenderWindow(new VideoMode(WIDTH, HEIGHT), TITLE);
             return window;
+        }
+
+        /// <summary>
+        /// Get Absoulute Mouse Position (OUTSIDE WINDOW)
+        /// </summary>
+        /// <param name="window"></param>
+        /// <returns></returns>
+        public static Vector2i GetAbsouluteMousePosition(RenderWindow window)
+        {
+            return Mouse.GetPosition(window);
+        }
+
+        /// <summary>
+        /// Get InGame Mouse Position
+        /// </summary>
+        /// <param name="window"></param>
+        /// <param name="absolute_mouse_pos"></param>
+        /// <returns>Vector2i -> Vector2f</returns>
+        public static Vector2f GetInGameMousePosition(RenderWindow window, Vector2i absolute_mouse_pos)
+        {
+            return window.MapPixelToCoords(absolute_mouse_pos);
+        }
+
+        /// <summary>
+        /// Converts screen pixels to game coordinates
+        /// </summary>
+        /// <param name="window"></param>
+        /// <param name="pixels_position"></param>
+        /// <returns>Vector2i -> Vector2f</returns>
+        public static Vector2f PixelsToGameCoordinates(RenderWindow window, Vector2i pixels_position)
+        {
+            return window.MapPixelToCoords(pixels_position);
+        }
+
+        /// <summary>
+        /// Converts game coordinates to screen pixels
+        /// </summary>
+        /// <param name="window"></param>
+        /// <param name="coordinates"></param>
+        /// <returns>Vector2f -> Vector2i</returns>
+        public static Vector2i GameCoordinatesToPixels(RenderWindow window, Vector2f coordinates)
+        {
+            return window.MapCoordsToPixel(coordinates);
         }
 
         /// <summary>

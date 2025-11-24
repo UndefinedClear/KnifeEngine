@@ -10,6 +10,10 @@ namespace KnifeEngine.Scenes.Examples
 {
     public static class PlatformerGameScene
     {
+        // Core vars
+        public static Logger logger;
+
+
         // Lists
         private static List<SpriteObject> sprites = new List<SpriteObject>(); // Sprites List
         public static List<string> textures_paths = new List<string>();       // Textures Paths List
@@ -53,6 +57,10 @@ namespace KnifeEngine.Scenes.Examples
             // Setting endcoding for terminal to UTF-8
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            // Initializing Logger
+            logger = new Logger("logs", "PlatformerGameScene");
+            logger.Info("PlatformerGameScene", "Scene is loading...");
+
             // Clear Scene assets
             TextureManager.Clear();
             textures_paths.Clear();
@@ -66,23 +74,31 @@ namespace KnifeEngine.Scenes.Examples
             grassSprite4 = null;
             grassSprite5 = null;
 
+            logger.Info("PlatformerGameScene", "Assets cleared successfully.");
+
             // Hide menu
             MainMenuScene.showWindow = false;
 
             // Creating window variable
             RenderWindow window = Core.CreateWindow(WIDTH, HEIGHT, TITLE);
+            logger.Info("PlatformerGameScene", "Window created successfully.");
 
             // Registering Handlers (for window)
 
             // Closing window event
-            window.Closed += (s, e) => window.Close();
+            window.Closed += (s, e) => { window.Close(); logger.Info("PlatformerGameScene", "Window closed!"); };
 
             // Redirecting Pressed keys to "pressedKeys"
             window.KeyPressed += (s, e) => pressedKeys.Add(e.Code);
             window.KeyReleased += (s, e) => pressedKeys.Remove(e.Code);
 
+            //window.MouseButtonPressed += (s, e) => MouseButtonEventsHandler(e, window);
+
+            logger.Info("PlatformerGameScene", "Event handlers registered successfully.");
+
             // Setting icon
             Core.SetWindowIcon(window, "Resources/Images/player_right.png");
+            logger.Info("PlatformerGameScene", "Window icon set successfully.");
 
             // Registering Textures (Use special order = ids like: 0, 1, 2)
             textures_paths.Add("Resources/Images/player_right.png"); // 0
@@ -90,15 +106,19 @@ namespace KnifeEngine.Scenes.Examples
             textures_paths.Add("Resources/Images/grass.png");        // 2
 
             TextureManager.RegisterTextures(textures_paths);
+            logger.Info("PlatformerGameScene", "Textures registered successfully.");
 
             // Sprites
             InitSprites();
+            logger.Info("PlatformerGameScene", "Sprites initialized successfully.");
 
             // Hitboxes (neccessay in this case)
             InitHitboxes();
+            logger.Info("PlatformerGameScene", "Hitboxes initialized successfully.");
 
             // Registering Sprites
             RegisterSprites();
+            logger.Info("PlatformerGameScene", "Sprites registered successfully.");
 
             // Creating clock for deltaTime
             Clock clock = Timedelta.MkClock();
@@ -117,6 +137,15 @@ namespace KnifeEngine.Scenes.Examples
 
                 // Rendering window
                 Render(window);
+            }
+        }
+
+        private static void MouseButtonEventsHandler(MouseButtonEventArgs _event, RenderWindow window)
+        {
+            if (_event.Button == Mouse.Button.Left)
+            {
+                Vector2f click_position = Core.GetInGameMousePosition(window, Core.GetAbsouluteMousePosition(window));
+                
             }
         }
 
